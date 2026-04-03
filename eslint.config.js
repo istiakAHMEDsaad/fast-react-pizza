@@ -53,6 +53,11 @@ export default defineConfig([
       'no-debugger': 'error',
       'no-var': 'error',
       'prefer-const': 'error',
+
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowExportNames: ['loader', 'action'] },
+      ],
     },
   },
 ]);
