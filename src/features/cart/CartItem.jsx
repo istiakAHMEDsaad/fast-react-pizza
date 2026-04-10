@@ -19,10 +19,7 @@ function CartItem({ item }) {
 }
 
 CartItem.propTypes = {
-  pizzaId: PropTypes.number,
-  name: PropTypes.string,
-  quantity: PropTypes.number,
-  totalPrice: PropTypes.number,
+  item: PropTypes.object,
 };
 
 export default CartItem;
