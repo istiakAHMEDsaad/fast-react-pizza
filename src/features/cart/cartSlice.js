@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 const initialState = {
   cart: [],
@@ -27,6 +27,7 @@ const cartSlice = createSlice({
     },
     increaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.pizzaId === action.payload);
+      if (!item) return;
       // quantity
       item.quantity++;
       // total price
@@ -34,6 +35,7 @@ const cartSlice = createSlice({
     },
     decreaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.pizzaId === action.payload);
+      if (!item) return;
       item.quantity--;
       item.totalPrice = item.quantity * item.unitPrice;
     },
@@ -50,5 +52,24 @@ export const {
   decreaseItemQuantity,
   clearCart,
 } = cartSlice.actions;
+
+// we can use 'redux reselct library'
+/*
+export const getTotalCartQuantity = (state) =>
+  state.cart.cart.reduce((sum, curr) => sum + curr.quantity, 0);
+
+export const getTotalCartPrice = (state) =>
+  state.cart.cart.reduce((sum, curr) => sum + curr.totalPrice, 0);
+*/
+
+export const getTotalCartQuantity = createSelector(
+  [(state) => state.cart.cart],
+  (cartItem) => cartItem.reduce((sum, item) => sum + item.quantity, 0),
+);
+
+export const getTotalCartPrice = createSelector(
+  [(state) => state.cart.cart],
+  (cartItem) => cartItem.reduce((sum, item) => sum + item.totalPrice, 0),
+);
 
 export default cartSlice.reducer;
