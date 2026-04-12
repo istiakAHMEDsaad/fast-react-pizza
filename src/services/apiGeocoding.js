@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export async function getAddress({ latitude, longitude }) {
   const res = await fetch(
     `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`,
@@ -7,3 +9,8 @@ export async function getAddress({ latitude, longitude }) {
   const data = await res.json();
   return data;
 }
+
+getAddress.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
