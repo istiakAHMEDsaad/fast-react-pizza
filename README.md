@@ -1,16 +1,94 @@
-# React + Vite
+# Fast React Pizza Co.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+_This application focuse on performance, stability & optimization by using redux & react router advanced topic such as Form_
 
-Currently, two official plugins are available:
+## Redux Topic:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**[Redux Toolkit](https://redux.js.org/introduction/installation)**
 
-## React Compiler
+For Redux Toolkit Quick Install: `npm install @reduxjs/toolkit`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [configureStore](https://redux.js.org/usage/configuring-your-store)
+- [createSlice](https://redux.js.org/tutorials/fundamentals/part-8-modern-redux#using-createslice)
+- [createAsyncThunk](https://redux.js.org/usage/writing-logic-thunks#using-createasyncthunk)
+- [createSelector](https://redux.js.org/usage/deriving-data-selectors#createselector-overview)
 
-## Expanding the ESLint configuration
+For React Redux Quick Install: `npm install react-redux`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [provider](https://redux.js.org/tutorials/quick-start#provide-the-redux-store-to-react)
+- [useSelector](https://redux.js.org/tutorials/fundamentals/part-5-ui-react#reading-state-from-the-store-with-useselector)
+- [useDispatch](https://redux.js.org/tutorials/fundamentals/part-5-ui-react#dispatching-actions-with-usedispatch)
+
+## React Router Topic:
+
+**[React Router Declarative Mode](https://reactrouter.com/start/declarative/installation#introduction)**
+
+React Router Declarative Mode quick install: `npm install react-router`
+
+- [createBrowserRouter](https://reactrouter.com/6.30.3/routers/create-browser-router#createbrowserrouter)
+- [RouterProvider](https://reactrouter.com/6.30.3/routers/router-provider#routerprovider)
+- [Outlet](https://reactrouter.com/6.30.3/components/outlet#outlet)
+- [useNavigate](https://reactrouter.com/6.30.3/hooks/use-navigate#usenavigate)
+- [useNavigation](https://reactrouter.com/6.30.3/hooks/use-navigation#usenavigation)
+- [redirect](https://reactrouter.com/6.30.3/fetch/redirect#redirect)
+- [Link](https://reactrouter.com/6.30.3/components/link#link)
+
+**Advanced:**
+
+- [useLoaderData](https://reactrouter.com/6.30.3/hooks/use-loader-data)
+- [useFetcher](https://reactrouter.com/6.30.3/hooks/use-fetcher#usefetcher)
+- [Form](https://reactrouter.com/6.30.3/components/form#form)
+- [useActionData](https://reactrouter.com/6.30.3/hooks/use-action-data#useactiondata)
+
+### API:
+
+Geocoding API: [Bigdatacloud](https://www.bigdatacloud.com/free-api/free-reverse-geocode-to-city-api)
+
+### Others:
+
+- Phone Number Regex: [UI Bakery](https://uibakery.io/regex-library/phone-number)
+- Currency Converter: [Frankfurter](https://frankfurter.dev/v1/)
+
+### Useful function:
+
+**_format currency function_**
+
+```js
+export function formatCurrency(value) {
+  return new Intl.NumberFormat('en', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(value);
+}
+```
+
+**_format date function_**
+
+```js
+export function formatDate(dateStr) {
+  return new Intl.DateTimeFormat('en', {
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(dateStr));
+}
+```
+
+**_calculate minutes left function_**
+
+```js
+export function calcMinutesLeft(dateStr) {
+  const d1 = new Date().getTime();
+  const d2 = new Date(dateStr).getTime();
+  return Math.round((d2 - d1) / 60000);
+}
+```
+
+### Generate Secret Key:
+
+```sh
+require('crypto').randomBytes(64).toString('hex')
+# or
+openssl rand -base64 32
+```
